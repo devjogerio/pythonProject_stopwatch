@@ -1,79 +1,72 @@
 import tkinter as Tkinter
 from datetime import datetime
 
-counter = 0  # Inicializa o contador para 0
-running = False  # Define a posição do cronômetro como parado
+counter = 0
+running = False
 
 
-# Função para atualizar o texto do label do contador
 def counter_label(label):
-    # Função interna que atualiza o contador
     def count():
-        if running:  # Verifica se o cronômetro está em execução
-            global counter  # Permite modificar a variável counter fora do escopo atual
-            if counter == 0:  # Se o contador for zero, exibe 'Ready!'
+        if running:
+            global counter
+            if counter == 0:
                 display = 'Começando!'
             else:
-                tt = datetime.utcfromtimestamp(counter)  # Converte o contador em um objeto de tempo
-                string = tt.strftime('%H:%M:%S')  # Formata o tempo como uma string HH:MM:SS
-                display = string  # Atualiza o texto do display com o tempo formatado
-            label['text'] = display  # Define o texto do label como o valor do display
+                tt = datetime.utcfromtimestamp(counter)
+                string = tt.strftime('%H:%M:%S')
+                display = string
+            label['text'] = display
 
-            # label.after(arg1, arg2) aguarda arg1 milissegundos e chama a função arg2
-            # Aqui, chama recursivamente a função count após 1000ms (1 segundo)
             label.after(1000, count)
-            counter += 1  # Incrementa o contador em 1 a cada segundo
+            counter += 1
 
-    count()  # Chama a função count para iniciar a contagem
+    count()
 
 
-# Função para iniciar o cronômetro
 def Start(label):
-    global running  # Permite modificar a variável running fora do escopo atual
-    running = True  # Altera o status para em execução
-    counter_label(label)  # Chama a função para atualizar o label do contador
-    start['state'] = 'disabled'  # Desabilita o botão 'Start'
-    stop['state'] = 'normal'  # Habilita o botão 'Stop'
-    reset['state'] = 'normal'  # Habilita o botão 'Reset'
+    global running
+    running = True
+    counter_label(label)
+    start['state'] = 'disabled'
+    stop['state'] = 'normal'
+    reset['state'] = 'normal'
 
 
-# Função para parar o cronômetro
 def Stop():
-    global running  # Permite modificar a variável running fora do escopo atual
-    start['state'] = 'normal'  # Habilita o botão 'Start'
-    stop['state'] = 'disabled'  # Desabilita o botão 'Stop'
-    reset['state'] = 'normal'  # Habilita o botão 'Reset'
-    running = False  # Altera o status para parado
+    global running
+    start['state'] = 'normal'
+    stop['state'] = 'disabled'
+    reset['state'] = 'normal'
+    running = False
 
 
-# Função para resetar o cronômetro
 def Reset(label):
-    global counter  # Permite modificar a variável counter fora do escopo atual
-    counter = 0  # Reseta o contador para 0
+    global counter
+    counter = 0
 
-    if not running:  # Se o cronômetro não estiver em execução ao pressionar reset
-        reset['state'] = 'disabled'  # Desabilita o botão 'Reset'
-        label['text'] = '00:00:00'  # Define o texto do label como '00:00:00'
-    else:  # Se o cronômetro estiver em execução ao pressionar reset
-        label['text'] = '00:00:00'  # Define o texto do label como '00:00:00'
+    if not running:
+        reset['state'] = 'disabled'
+        label['text'] = '00:00:00'
+    else:
+        label['text'] = '00:00:00'
 
 
-root = Tkinter.Tk()  # Cria uma janela principal
-root.title("Stopwatch")  # Define o título da janela como "Stopwatch"
+root = Tkinter.Tk()
+root.title("Stopwatch")
 
-root.minsize(width=250, height=70)  # Define o tamanho mínimo da janela
+root.minsize(width=250, height=70)
 
-label = Tkinter.Label(root, text='pronto pra começar!', fg='black', font='Verdana 26 bold')  # Cria um label com texto 'Ready!'
-label.pack()  # Coloca o label na janela
+label = Tkinter.Label(root, text='pronto pra começar!', fg='black', font='Verdana 26 bold')
+label.pack()
 
-f = Tkinter.Frame(root)  # Cria um frame na janela principal
-start = Tkinter.Button(f, text='Start', width=6, command=lambda: Start(label))  # Botão 'Start'
-stop = Tkinter.Button(f, text='Stop', width=6, state='disabled', command=Stop)  # Botão 'Stop'
-reset = Tkinter.Button(f, text='Reset', width=6, state='disabled', command=lambda: Reset(label))  # Botão 'Reset'
+f = Tkinter.Frame(root)
+start = Tkinter.Button(f, text='Start', width=6, command=lambda: Start(label))
+stop = Tkinter.Button(f, text='Stop', width=6, state='disabled', command=Stop)
+reset = Tkinter.Button(f, text='Reset', width=6, state='disabled', command=lambda: Reset(label))
 
-f.pack(anchor='center', pady=5)  # Posiciona o frame no centro da janela
-start.pack(side='left')  # Posiciona o botão 'Start' à esquerda
-stop.pack(side='left')  # Posiciona o botão 'Stop' à esquerda
-reset.pack(side='left')  # Posiciona o botão 'Reset' à esquerda
+f.pack(anchor='center', pady=5)
+start.pack(side='left')
+stop.pack(side='left')
+reset.pack(side='left')
 
-root.mainloop()  # Inicia o loop principal da interface gráfica
+root.mainloop()
