@@ -1,8 +1,8 @@
 from selenium import webdriver as opcoesSelenium
 from selenium.webdriver.common.by import By
 
-import pyautogui as tempoEspera
-import pyautogui as funcoesTeclado
+import pyautogui as waitTime
+import pyautogui as keyboardFunctions
 
 import pandas as pd
 
@@ -15,13 +15,13 @@ navegador.get("https://www.magazineluiza.com.br/")
 navegador.find_element(By.ID, "input-search").send_keys("geladeira")
 
 # Tempo para o computador processas as informações
-tempoEspera.sleep(2)
+waitTime.sleep(2)
 
 # Apertando a tecla do teclado enter para pesquisar o produto
-funcoesTeclado.press("enter")
+keyboardFunctions.press("enter")
 
 # Tempo para o computador processas as informações
-tempoEspera.sleep(10)
+waitTime.sleep(10)
 
 # Criando o DataFrame que vai receber os dados
 listaDataFrame = []
@@ -91,7 +91,7 @@ for item in listaProdutos:
             urlProduto = item.find_element(By.TAG_NAME, "a").get_attribute("href")
         except Exception:
             pass
-# Addition of the magalu file and refactoring of the file code.
+
     else:
 
         urlProduto = "-"

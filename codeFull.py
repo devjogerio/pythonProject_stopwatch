@@ -56,7 +56,7 @@ root.title("Stopwatch")
 
 root.minsize(width=250, height=70)
 
-label = Tkinter.Label(root, text='pronto pra começar!', fg='black', font='Verdana 26 bold')
+label = Tkinter.Label(root, text='pronto pra começar!', fg='black', font='Verdana 22 bold')
 label.pack()
 
 f = Tkinter.Frame(root)

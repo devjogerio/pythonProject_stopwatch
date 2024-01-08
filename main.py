@@ -1,10 +1,10 @@
-# Importa a biblioteca tkinter e a renomeia como Tkinter (usando maiúscula para seguir convenções)
+# Import the tkinter library and rename it as Tkinter (using capital letters to follow conventions)
 import tkinter as Tkinter
 
-# Importa as classes ou funções específicas do módulo 'model' (presumivelmente contém a lógica de modelo MVC)
+# Imports the specific classes or functions from the 'model' module (presumably contains MVC model logic)
 from model import StopwatchModel
 
-# Importa as classes ou funções específicas do módulo 'view' (presumivelmente contém a parte visual do MVC)
+# Imports the specific classes or functions from the 'view' module (presumably contains the visual part of MVC)
 from view import StopwatchView
 
 # Importa as classes ou funções específicas do módulo 'controller' (presumivelmente contém a lógica de controle do MVC)
